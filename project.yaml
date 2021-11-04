@@ -53,7 +53,7 @@ dataSources:
     kind: substrate/Runtime
     filter:
       specName: polkadot
-    startBlock: 7420900
+    startBlock: 7554350
     mapping:
       handlers:
         - handler: handleBlock
