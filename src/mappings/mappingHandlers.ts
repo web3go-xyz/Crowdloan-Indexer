@@ -39,12 +39,22 @@ const eventsMapping = {
   'crowdloan/Dissolved': handleCrowdloanDissolved
 };
 
+/**
+ * Handle block data from the current fetched block
+ * @method handleBlock
+ * @param {SubstrateBlock} block - The fetched block containing block data info
+ */  
 export async function handleBlock(block: SubstrateBlock): Promise<void> {
   await updateBlockNum(block);
   await updateWinningBlocks(block);
   await updateCrowdloanStatus(block);
 }
 
+/**
+ * Handle event data at the fetched block
+ * @method handleEvent
+ * @param {SubstrateEvent} event - The event containing data about an event emitted
+ */  
 export async function handleEvent(event: SubstrateEvent): Promise<void> {
   const {
     event: { method, section },
@@ -71,6 +81,9 @@ export async function handleEvent(event: SubstrateEvent): Promise<void> {
   }
 }
 
+/**
+ * Setup chronicle
+ */ 
 const init = async () => {
   const chronicle = await Chronicle.get(ChronicleKey);
   if (!chronicle) {
